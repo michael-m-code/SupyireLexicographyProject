@@ -391,66 +391,80 @@
     <p>&copy; 2025 Supyire Lexicography Project | Africa International University</p>
   </footer>
 
-  <!-- ---------- SCRIPTS ---------- -->
-<!-- ---------- SCRIPT ---------- -->
-  <script>
-    function showSection(id) {
-      document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
-      const target = document.getElementById(id);
-      if (!target) return;
-      target.classList.add('active');
+<script>
+  // === Show specific section ===
+  function showSection(id) {
+    // Hide all sections
+    document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
 
-      const carousel = document.getElementById('carousel');
-      if (carousel) carousel.style.display = (id === 'home') ? 'block' : 'none';
+    // Show the selected one
+    const target = document.getElementById(id);
+    if (target) target.classList.add('active');
 
-      document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
-      document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate'));
+    // Toggle carousel visibility
+    const carousel = document.getElementById('carousel');
+    if (carousel) carousel.style.display = (id === 'home') ? 'block' : 'none';
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    // Close dropdowns
+    closeAllDropdowns();
 
-    function toggleDropdown(menuId, btn) {
-      const menu = document.getElementById(menuId);
-      const arrow = btn.querySelector('.arrow');
-      if (!menu) return;
-      document.querySelectorAll('.dropdown-content').forEach(m => { if (m !== menu) m.classList.remove('show'); });
-      document.querySelectorAll('.arrow').forEach(a => { if (a !== arrow) a.classList.remove('rotate'); });
-      menu.classList.toggle('show');
-      if (arrow) arrow.classList.toggle('rotate');
-    }
+    // Scroll to top for better UX
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.dropdown')) {
-        document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
-        document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate'));
-      }
+  // === Dropdown handling ===
+  function toggleDropdown(menuId, btn) {
+    const menu = document.getElementById(menuId);
+    const arrow = btn.querySelector('.arrow');
+
+    // Close others first
+    document.querySelectorAll('.dropdown-content').forEach(m => {
+      if (m !== menu) m.classList.remove('show');
+    });
+    document.querySelectorAll('.arrow').forEach(a => {
+      if (a !== arrow) a.classList.remove('rotate');
     });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
-        document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate'));
-      }
-    });
+    // Toggle selected dropdown
+    if (menu) menu.classList.toggle('show');
+    if (arrow) arrow.classList.toggle('rotate');
+  }
 
-    (function() {
-      const carousel = document.getElementById('carousel');
-      if (!carousel) return;
-      const slides = carousel.querySelectorAll('img');
-      if (!slides.length) return;
-      let idx = 0;
-      setInterval(() => {
-        if (carousel.style.display === 'none') return;
-        slides[idx].classList.remove('active');
-        idx = (idx + 1) % slides.length;
-        slides[idx].classList.add('active');
-      }, 4000);
-    })();
+  // === Close all dropdowns ===
+  function closeAllDropdowns() {
+    document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
+    document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate'));
+  }
 
-    window.addEventListener('DOMContentLoaded', () => showSection('home'));
-  </script>
+  // === Handle outside clicks & Esc key ===
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.dropdown')) closeAllDropdowns();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeAllDropdowns();
+  });
+
+  // === Carousel ===
+  (function() {
+    const carousel = document.getElementById('carousel');
+    if (!carousel) return;
+    const slides = carousel.querySelectorAll('img');
+    if (!slides.length) return;
+    let idx = 0;
+    setInterval(() => {
+      if (carousel.style.display === 'none') return;
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    }, 4000);
+  })();
+
+  // === Initialize homepage ===
+  window.addEventListener('DOMContentLoaded', () => showSection('home'));
+</script>
 </body>
 </html>
+
 
 
 
