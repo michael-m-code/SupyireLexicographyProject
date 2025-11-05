@@ -217,31 +217,47 @@
     <img src="images/house.jpeg" alt="">
   </div>
 
-  <!-- ---------- NAVIGATION ---------- -->
-  <nav>
-    <div class="nav-inner">
-      <a href="#" class="dropbtn" onclick="showSection('home'); return false;">🏠 Home</a>
+ <!-- ---------- NAVIGATION ---------- -->
+<nav role="navigation" aria-label="Main menu">
+  <div class="nav-inner">
+    
+    <!-- 🏠 HOME -->
+    <div class="dropdown">
+      <a class="dropbtn" href="#" onclick="showSection('home'); return false;">🏠 Home</a>
+    </div>
 
-      <div class="dropdown">
-        <button class="dropbtn" onclick="toggleDropdown('about-menu', this)">📘 About ▾</button>
-        <div id="about-menu" class="dropdown-content">
-          <a href="#" onclick="showSection('about'); toggleDropdown('about-menu'); return false;">About</a>
-          <a href="#" onclick="showSection('history'); toggleDropdown('about-menu'); return false;">History</a>
-          <a href="#" onclick="showSection('database'); toggleDropdown('about-menu'); return false;">Database</a>
-        </div>
-      </div>
-
-      <div class="dropdown">
-        <button class="dropbtn" onclick="toggleDropdown('support-menu', this)">💖 Support ▾</button>
-        <div id="support-menu" class="dropdown-content">
-          <a href="#" onclick="showSection('support'); toggleDropdown('support-menu'); return false;">Support Overview</a>
-          <a href="#" onclick="showSection('prayer'); toggleDropdown('support-menu'); return false;">Prayer</a>
-          <a href="#" onclick="showSection('donate-hub'); toggleDropdown('support-menu'); return false;">Donate</a>
-          <a href="#" onclick="showSection('contact'); toggleDropdown('support-menu'); return false;">Contact</a>
-        </div>
+    <!-- 📘 ABOUT -->
+    <div class="dropdown">
+      <button class="dropbtn" onclick="toggleDropdown('about-menu', this)">
+        📘 About <span class="arrow">▾</span>
+      </button>
+      <div id="about-menu" class="dropdown-content" role="menu">
+        <a href="#" onclick="showSection('about'); toggleDropdown('about-menu'); return false;">About the Project</a>
+        <a href="#" onclick="showSection('history'); toggleDropdown('about-menu'); return false;">History of Research</a>
+        <a href="#" onclick="showSection('database'); toggleDropdown('about-menu'); return false;">Toolbox Database</a>
+        <a href="#" onclick="showSection('example-text'); toggleDropdown('about-menu'); return false;">Example of a Text</a>
+        <a href="#" onclick="showSection('documentation'); toggleDropdown('about-menu'); return false;">Documentation</a>
+        <a href="#" onclick="showSection('news'); toggleDropdown('about-menu'); return false;">News</a>
+        <a href="#" onclick="showSection('team'); toggleDropdown('about-menu'); return false;">Team</a>
+        <a href="#" onclick="showSection('budget'); toggleDropdown('about-menu'); return false;">Budget</a>
       </div>
     </div>
-  </nav>
+
+    <!-- 💖 SUPPORT -->
+    <div class="dropdown">
+      <button class="dropbtn" onclick="toggleDropdown('support-menu', this)">
+        💖 Support <span class="arrow">▾</span>
+      </button>
+      <div id="support-menu" class="dropdown-content" role="menu">
+        <a href="#" onclick="showSection('support'); toggleDropdown('support-menu'); return false;">Support Overview</a>
+        <a href="#" onclick="showSection('prayer'); toggleDropdown('support-menu'); return false;">Prayer</a>
+        <a href="#" onclick="showSection('donate-hub'); toggleDropdown('support-menu'); return false;">Donate</a>
+        <a href="#" onclick="showSection('contact'); toggleDropdown('support-menu'); return false;">Contact</a>
+      </div>
+    </div>
+
+  </div>
+</nav>
 
   <!-- (All main sections and scripts stay unchanged from your working version) -->
 
@@ -414,6 +430,7 @@
   </script>
 </body>
 </html>
+
 
 
 
