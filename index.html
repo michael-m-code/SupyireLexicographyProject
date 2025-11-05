@@ -226,48 +226,43 @@
     <img src="images/people2.JPG" alt="Community gathering">
   </div>
 
-  <!-- ---------- NAVIGATION ---------- -->
-  <nav role="navigation" aria-label="Main menu">
-    <div class="nav-inner">
-      <div class="dropdown">
-        <a class="dropbtn" href="/home" data-target="home">🏠 Home</a>
-      </div>
+ <!-- ---------- NAVIGATION ---------- -->
+<nav role="navigation" aria-label="Main menu">
+  <div class="nav-inner">
+    <div class="dropdown">
+      <a class="dropbtn" href="#" onclick="showSection('home'); return false;">🏠 Home</a>
+    </div>
 
-      <div class="dropdown">
-        <button class="dropbtn" onclick="toggleDropdown('about-menu', this)">
-          📘 About <span class="arrow">▾</span>
-        </button>
-        <div id="about-menu" class="dropdown-content" role="menu">
-          <a class="menu-link" href="/about" data-target="about" role="menuitem">About the Project</a>
-          <a class="menu-link" href="/history" data-target="history" role="menuitem">History of Research</a>
-          <a class="menu-link" href="/database" data-target="database" role="menuitem">Toolbox Database</a>
-          <a class="menu-link" href="/example-text" data-target="example-text" role="menuitem">Example of a Text</a>
-          <a class="menu-link" href="/documentation" data-target="documentation" role="menuitem">Documentation</a>
-          <a class="menu-link" href="/news" data-target="news" role="menuitem">News</a>
-          <a class="menu-link" href="/team" data-target="team" role="menuitem">Team</a>
-          <a class="menu-link" href="/budget" data-target="budget" role="menuitem">Budget</a>
-        </div>
-      </div>
-
-      <!-- ✅ Updated Support Dropdown -->
-      <div class="dropdown">
-        <button class="dropbtn" onclick="toggleDropdown('support-menu', this)">
-          💖 Support <span class="arrow">▾</span>
-        </button>
-        <div id="support-menu" class="dropdown-content" role="menu">
-          <a class="menu-link" href="#" data-target="support" role="menuitem"
-            onclick="showSection('support'); toggleDropdown('support-menu'); return false;">Support Overview</a>
-          <a class="menu-link" href="#" data-target="prayer" role="menuitem"
-            onclick="showSection('prayer'); toggleDropdown('support-menu'); return false;">Prayer</a>
-          <a class="menu-link" href="#" data-target="donate-hub" role="menuitem"
-            onclick="showSection('donate-hub'); toggleDropdown('support-menu'); return false;">Donate</a>
-          <a class="menu-link" href="#" data-target="contact" role="menuitem"
-            onclick="showSection('contact'); toggleDropdown('support-menu'); return false;">Contact</a>
-        </div>
+    <div class="dropdown">
+      <button class="dropbtn" onclick="toggleDropdown('about-menu', this)">
+        📘 About <span class="arrow">▾</span>
+      </button>
+      <div id="about-menu" class="dropdown-content" role="menu">
+        <a class="menu-link" href="#" role="menuitem" onclick="showSection('about'); toggleDropdown('about-menu'); return false;">About the Project</a>
+        <a class="menu-link" href="#" role="menuitem" onclick="showSection('history'); toggleDropdown('about-menu'); return false;">History of Research</a>
+        <a class="menu-link" href="#" role="menuitem" onclick="showSection('database'); toggleDropdown('about-menu'); return false;">Toolbox Database</a>
+        <a class="menu-link" href="#" role="menuitem" onclick="showSection('example-text'); toggleDropdown('about-menu'); return false;">Example of a Text</a>
+        <a class="menu-link" href="#" role="menuitem" onclick="showSection('documentation'); toggleDropdown('about-menu'); return false;">Documentation</a>
+        <a class="menu-link" href="#" role="menuitem" onclick="showSection('news'); toggleDropdown('about-menu'); return false;">News</a>
+        <a class="menu-link" href="#" role="menuitem" onclick="showSection('team'); toggleDropdown('about-menu'); return false;">Team</a>
+        <a class="menu-link" href="#" role="menuitem" onclick="showSection('budget'); toggleDropdown('about-menu'); return false;">Budget</a>
       </div>
     </div>
-  </nav>
 
+    <!-- ✅ Updated Support Dropdown -->
+    <div class="dropdown">
+      <button class="dropbtn" onclick="toggleDropdown('support-menu', this)">
+        💖 Support <span class="arrow">▾</span>
+      </button>
+      <div id="support-menu" class="dropdown-content" role="menu">
+        <a class="menu-link" href="#" role="menuitem" onclick="showSection('support'); toggleDropdown('support-menu'); return false;">Support Overview</a>
+        <a class="menu-link" href="#" role="menuitem" onclick="showSection('prayer'); toggleDropdown('support-menu'); return false;">Prayer</a>
+        <a class="menu-link" href="#" role="menuitem" onclick="showSection('donate-hub'); toggleDropdown('support-menu'); return false;">Donate</a>
+        <a class="menu-link" href="#" role="menuitem" onclick="showSection('contact'); toggleDropdown('support-menu'); return false;">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
   <!-- (All main sections and scripts stay unchanged from your working version) -->
 
   <!-- ---------- MAIN CONTENT ---------- -->
@@ -481,5 +476,6 @@
   </script>
 </body>
 </html>
+
 
 
