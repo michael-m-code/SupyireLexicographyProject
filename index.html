@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Supyire Lexicography Project</title>
 
   <style>
@@ -13,19 +13,19 @@
       --dark: #222;
     }
 
-    html, body { height: 100%; }
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       background: #f8f8f8;
-      color: #222;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
+      color: var(--dark);
     }
 
-    a { color: var(--primary); text-decoration: none; }
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
 
-    /* ---------- Header ---------- */
+    /* ---------- HEADER ---------- */
     .top-heading {
       text-align: center;
       padding: 36px 20px 12px;
@@ -33,24 +33,22 @@
       border-bottom: 4px solid var(--primary);
     }
     .top-heading h1 {
-      font-size: 2.4rem;
+      font-size: 2.3rem;
       color: var(--primary);
       font-weight: 800;
       margin: 0;
     }
     .top-heading p {
-      margin: 6px 0 0;
+      margin-top: 8px;
       color: #333;
-      font-weight: 500;
     }
 
-    /* ---------- Carousel ---------- */
+    /* ---------- CAROUSEL ---------- */
     .carousel {
       position: relative;
       overflow: hidden;
       height: 50vh;
-      max-height: 500px;
-      border-bottom: 4px solid #4c3f91;
+      border-bottom: 4px solid var(--primary);
     }
     .carousel img {
       position: absolute;
@@ -61,208 +59,190 @@
       object-fit: cover;
       opacity: 0;
       transform: scale(1);
-      transition: opacity 1.2s ease-in-out, transform 8s ease-in-out;
+      transition: opacity 1s ease-in-out, transform 8s ease-in-out;
     }
     .carousel img.active {
       opacity: 1;
-      transform: scale(1.08);
-      z-index: 1;
-    }
-    .carousel::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.15);
-      pointer-events: none;
+      transform: scale(1.1);
     }
 
-    /* ---------- Navigation ---------- */
+    /* ---------- NAVIGATION ---------- */
     nav {
+      background: rgba(45, 45, 45, 0.95);
       position: sticky;
       top: 0;
-      z-index: 1200;
-      background: rgba(45, 45, 45, 0.92);
-      padding: 10px 12px;
+      z-index: 1000;
+      padding: 10px;
       text-align: center;
       backdrop-filter: blur(6px);
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
     }
+
     .nav-inner {
       display: flex;
-      align-items: center;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      flex-wrap: wrap;
     }
-    .dropdown { position: relative; display: inline-block; }
+
     .dropbtn {
       background: var(--primary);
       color: #fff;
+      border: none;
       padding: 10px 16px;
-      border: 0;
       border-radius: 8px;
       cursor: pointer;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      font-weight: bold;
+      transition: 0.3s;
     }
-    .dropbtn:hover { background: #5a4bb1; }
-    .arrow { transition: transform .22s ease; }
-    .arrow.rotate { transform: rotate(180deg); }
+
+    .dropbtn:hover {
+      background: #5a4bb1;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
 
     .dropdown-content {
       display: none;
       position: absolute;
-      left: 0;
-      background: rgba(40, 40, 60, 0.92);
-      backdrop-filter: blur(10px);
+      background: rgba(50, 50, 70, 0.95);
       border-radius: 10px;
       min-width: 220px;
-      padding: 6px 0;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-      z-index: 1250;
-      animation: fadeInMenu 0.25s ease both;
+      z-index: 1001;
+      text-align: left;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
-
-    .dropdown-content.show { display: block; }
 
     .dropdown-content a {
       display: block;
-      width: 100%;
-      text-align: left;
-      color: #fff;
-      font-weight: 500;
       padding: 10px 16px;
-      border-radius: 0;
-      box-sizing: border-box;
-      transition: background 0.25s ease, padding-left 0.2s ease;
+      color: #fff;
     }
+
     .dropdown-content a:hover {
       background: linear-gradient(90deg, #4c3f91, #6b58c2);
-      padding-left: 20px;
     }
 
-    @keyframes fadeInMenu {
-      from { opacity: 0; transform: translateY(-6px); }
-      to { opacity: 1; transform: translateY(0); }
+    .dropdown-content.show {
+      display: block;
     }
 
-    /* ---------- Main Content ---------- */
-    main { max-width: 1200px; margin: 26px auto; padding: 0 16px; }
-    @media (max-width:900px) { .carousel { height: 35vh; } }
-    main section { display: none; padding: 26px 0; }
-    main section.active { display: block; }
-
-    /* ---------- Team Hover ---------- */
-    .team-member { transition: all 0.3s ease; }
-    .team-member:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 20px rgba(76, 63, 145, 0.25);
+    /* ---------- MAIN ---------- */
+    main {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 16px;
     }
 
-    /* ---------- Budget Table ---------- */
-    .table-container {
-      margin: 25px 0;
-      overflow-x: auto;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      animation: fadeUp 0.8s ease both;
+    section {
+      display: none;
     }
-    .budget-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.95rem;
-      border-radius: 16px;
-      overflow: hidden;
+    section.active {
+      display: block;
     }
-    .budget-table thead {
-      background: linear-gradient(90deg, #4c3f91, #6b58c2);
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      font-weight: bold;
+
+    h2 {
+      text-align: center;
+      color: var(--primary);
     }
-    .budget-table th, .budget-table td {
-      padding: 14px 10px;
+
+    .center {
       text-align: center;
     }
-    .budget-table tbody tr:nth-child(even) { background-color: #f7f5ff; }
-    .budget-table tbody tr:hover { background: #ede7ff; transition: 0.3s ease; }
-    .category-training td:first-child { color: #4b0082; font-weight: 600; }
-    .category-equipment td:first-child { color: #008080; font-weight: 600; }
-    .category-personnel td:first-child { color: #b23b3b; font-weight: 600; }
-    .category-total td { background-color: #f2ecff; font-weight: 700; color: #222; }
-    .grand-total td {
-      background: linear-gradient(90deg, #4c3f91, #6b58c2);
-      color: white;
-      font-weight: 800;
+
+    /* ---------- SUPPORT SECTION ---------- */
+    .support-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
     }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
     }
-    .center { text-align: center; }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #5a4bb1;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      text-align: center;
+      padding: 18px;
+      background: #fff;
+      border-top: 1px solid #eee;
+      margin-top: 40px;
+    }
   </style>
 </head>
 
 <body>
   <!-- ---------- HEADER ---------- -->
-  <header class="top-heading" role="banner">
+  <header class="top-heading">
     <h1>Supyire Lexicography Project</h1>
     <p>Completion of Supyire Dictionary and Digitized Text Corpus — Africa International University</p>
   </header>
 
   <!-- ---------- CAROUSEL ---------- -->
-  <div id="carousel" class="carousel" aria-hidden="false">
-    <img src="images/maize.jpeg" alt="Maize field" class="active">
-    <img src="images/ground.jpeg" alt="Ground work">
-    <img src="images/lighter.jpg" alt="Village light">
-    <img src="images/house.jpeg" alt="Traditional house">
-    <img src="images/people2.JPG" alt="Community gathering">
+  <div id="carousel" class="carousel">
+    <img src="images/maize.jpeg" class="active" alt="">
+    <img src="images/ground.jpeg" alt="">
+    <img src="images/lighter.jpg" alt="">
+    <img src="images/house.jpeg" alt="">
   </div>
 
- <!-- ---------- NAVIGATION ---------- -->
-<nav role="navigation" aria-label="Main menu">
-  <div class="nav-inner">
-    <div class="dropdown">
-      <a class="dropbtn" href="#" onclick="showSection('home'); return false;">🏠 Home</a>
-    </div>
+  <!-- ---------- NAVIGATION ---------- -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="dropbtn" onclick="showSection('home'); return false;">🏠 Home</a>
 
-    <div class="dropdown">
-      <button class="dropbtn" onclick="toggleDropdown('about-menu', this)">
-        📘 About <span class="arrow">▾</span>
-      </button>
-      <div id="about-menu" class="dropdown-content" role="menu">
-        <a class="menu-link" href="#" role="menuitem" onclick="showSection('about'); toggleDropdown('about-menu'); return false;">About the Project</a>
-        <a class="menu-link" href="#" role="menuitem" onclick="showSection('history'); toggleDropdown('about-menu'); return false;">History of Research</a>
-        <a class="menu-link" href="#" role="menuitem" onclick="showSection('database'); toggleDropdown('about-menu'); return false;">Toolbox Database</a>
-        <a class="menu-link" href="#" role="menuitem" onclick="showSection('example-text'); toggleDropdown('about-menu'); return false;">Example of a Text</a>
-        <a class="menu-link" href="#" role="menuitem" onclick="showSection('documentation'); toggleDropdown('about-menu'); return false;">Documentation</a>
-        <a class="menu-link" href="#" role="menuitem" onclick="showSection('news'); toggleDropdown('about-menu'); return false;">News</a>
-        <a class="menu-link" href="#" role="menuitem" onclick="showSection('team'); toggleDropdown('about-menu'); return false;">Team</a>
-        <a class="menu-link" href="#" role="menuitem" onclick="showSection('budget'); toggleDropdown('about-menu'); return false;">Budget</a>
+      <div class="dropdown">
+        <button class="dropbtn" onclick="toggleDropdown('about-menu', this)">📘 About ▾</button>
+        <div id="about-menu" class="dropdown-content">
+          <a href="#" onclick="showSection('about'); toggleDropdown('about-menu'); return false;">About</a>
+          <a href="#" onclick="showSection('history'); toggleDropdown('about-menu'); return false;">History</a>
+          <a href="#" onclick="showSection('database'); toggleDropdown('about-menu'); return false;">Database</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn" onclick="toggleDropdown('support-menu', this)">💖 Support ▾</button>
+        <div id="support-menu" class="dropdown-content">
+          <a href="#" onclick="showSection('support'); toggleDropdown('support-menu'); return false;">Support Overview</a>
+          <a href="#" onclick="showSection('prayer'); toggleDropdown('support-menu'); return false;">Prayer</a>
+          <a href="#" onclick="showSection('donate-hub'); toggleDropdown('support-menu'); return false;">Donate</a>
+          <a href="#" onclick="showSection('contact'); toggleDropdown('support-menu'); return false;">Contact</a>
+        </div>
       </div>
     </div>
+  </nav>
 
-    <!-- ✅ Updated Support Dropdown -->
-    <div class="dropdown">
-      <button class="dropbtn" onclick="toggleDropdown('support-menu', this)">
-        💖 Support <span class="arrow">▾</span>
-      </button>
-      <div id="support-menu" class="dropdown-content" role="menu">
-        <a class="menu-link" href="#" role="menuitem" onclick="showSection('support'); toggleDropdown('support-menu'); return false;">Support Overview</a>
-        <a class="menu-link" href="#" role="menuitem" onclick="showSection('prayer'); toggleDropdown('support-menu'); return false;">Prayer</a>
-        <a class="menu-link" href="#" role="menuitem" onclick="showSection('donate-hub'); toggleDropdown('support-menu'); return false;">Donate</a>
-        <a class="menu-link" href="#" role="menuitem" onclick="showSection('contact'); toggleDropdown('support-menu'); return false;">Contact</a>
-      </div>
-    </div>
-  </div>
-</nav>
   <!-- (All main sections and scripts stay unchanged from your working version) -->
 
   <!-- ---------- MAIN CONTENT ---------- -->
@@ -391,79 +371,50 @@
     <p>&copy; 2025 Supyire Lexicography Project | Africa International University</p>
   </footer>
 
-<script>
-  // === Show specific section ===
-  function showSection(id) {
-    // Hide all sections
-    document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+ <!-- ---------- SCRIPT ---------- -->
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+      const target = document.getElementById(id);
+      if (target) target.classList.add('active');
+      const carousel = document.getElementById('carousel');
+      carousel.style.display = (id === 'home') ? 'block' : 'none';
+      document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-    // Show the selected one
-    const target = document.getElementById(id);
-    if (target) target.classList.add('active');
+    function toggleDropdown(menuId, btn) {
+      const menu = document.getElementById(menuId);
+      document.querySelectorAll('.dropdown-content').forEach(m => {
+        if (m !== menu) m.classList.remove('show');
+      });
+      menu.classList.toggle('show');
+    }
 
-    // Toggle carousel visibility
-    const carousel = document.getElementById('carousel');
-    if (carousel) carousel.style.display = (id === 'home') ? 'block' : 'none';
-
-    // Close dropdowns
-    closeAllDropdowns();
-
-    // Scroll to top for better UX
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // === Dropdown handling ===
-  function toggleDropdown(menuId, btn) {
-    const menu = document.getElementById(menuId);
-    const arrow = btn.querySelector('.arrow');
-
-    // Close others first
-    document.querySelectorAll('.dropdown-content').forEach(m => {
-      if (m !== menu) m.classList.remove('show');
-    });
-    document.querySelectorAll('.arrow').forEach(a => {
-      if (a !== arrow) a.classList.remove('rotate');
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
+      }
     });
 
-    // Toggle selected dropdown
-    if (menu) menu.classList.toggle('show');
-    if (arrow) arrow.classList.toggle('rotate');
-  }
+    // Carousel rotation
+    (function() {
+      const carousel = document.getElementById('carousel');
+      const slides = carousel.querySelectorAll('img');
+      let index = 0;
+      setInterval(() => {
+        if (carousel.style.display === 'none') return;
+        slides[index].classList.remove('active');
+        index = (index + 1) % slides.length;
+        slides[index].classList.add('active');
+      }, 4000);
+    })();
 
-  // === Close all dropdowns ===
-  function closeAllDropdowns() {
-    document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
-    document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate'));
-  }
-
-  // === Handle outside clicks & Esc key ===
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.dropdown')) closeAllDropdowns();
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeAllDropdowns();
-  });
-
-  // === Carousel ===
-  (function() {
-    const carousel = document.getElementById('carousel');
-    if (!carousel) return;
-    const slides = carousel.querySelectorAll('img');
-    if (!slides.length) return;
-    let idx = 0;
-    setInterval(() => {
-      if (carousel.style.display === 'none') return;
-      slides[idx].classList.remove('active');
-      idx = (idx + 1) % slides.length;
-      slides[idx].classList.add('active');
-    }, 4000);
-  })();
-
-  // === Initialize homepage ===
-  window.addEventListener('DOMContentLoaded', () => showSection('home'));
-</script>
+    window.addEventListener('DOMContentLoaded', () => showSection('home'));
+  </script>
 </body>
 </html>
+
 
 
 
