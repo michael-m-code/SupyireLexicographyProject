@@ -392,9 +392,9 @@
   </footer>
 
   <!-- ---------- SCRIPTS ---------- -->
+<!-- ---------- SCRIPT ---------- -->
   <script>
-    // Navigation handling
-    function showSection(id, opts = { pushState: true }) {
+    function showSection(id) {
       document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
       const target = document.getElementById(id);
       if (!target) return;
@@ -406,14 +406,6 @@
       document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
       document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate'));
 
-      if (opts.pushState) {
-        const newPath = '/' + id;
-        if (location.pathname !== newPath) {
-          history.pushState({ section: id }, '', newPath);
-        } else {
-          history.replaceState({ section: id }, '', newPath);
-        }
-      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -441,7 +433,6 @@
       }
     });
 
-    // Carousel rotation
     (function() {
       const carousel = document.getElementById('carousel');
       if (!carousel) return;
@@ -456,26 +447,11 @@
       }, 4000);
     })();
 
-    // Route handling
-    function initialRoute() {
-      const p = location.pathname.replace(/^\/+|\/+$/g, '') || 'home';
-      const first = p.split('/')[0];
-      const candidate = document.getElementById(first) ? first : 'home';
-      showSection(candidate, { pushState: false });
-    }
-    initialRoute();
-
-    window.addEventListener('popstate', (e) => {
-      const state = e.state && e.state.section;
-      if (state && document.getElementById(state)) {
-        showSection(state, { pushState: false });
-      } else {
-        initialRoute();
-      }
-    });
+    window.addEventListener('DOMContentLoaded', () => showSection('home'));
   </script>
 </body>
 </html>
+
 
 
 
