@@ -144,31 +144,6 @@ main section.active{ display:block; }
   box-shadow: 0 8px 20px rgba(76, 63, 145, 0.25);
 }
 
-/* ---------- Team Grid ---------- */
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-.team-member img {
-  width:120px;
-  height:120px;
-  object-fit:cover;
-  border-radius:50%;
-  margin-bottom:12px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
-}
-.team-member h3 {
-  margin:6px 0 4px;
-  color: var(--primary);
-  font-size: 1.1rem;
-}
-.team-member p {
-  font-size:0.95rem;
-  color:#555;
-}
-
 /* ---------- Budget Table ---------- */
 .table-container { margin: 25px 0; overflow-x: auto; background: #fff; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); animation: fadeUp 0.8s ease both; }
 .budget-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; border-radius: 16px; overflow: hidden; }
@@ -188,45 +163,11 @@ main section.active{ display:block; }
 .glow{animation:glowPulse 1.4s ease-in-out 1}
 @keyframes glowPulse{ 0%{text-shadow:0 0 0 rgba(255,255,255,0)} 50%{text-shadow:0 0 12px rgba(255,255,255,0.9)} 100%{text-shadow:0 0 0 rgba(255,255,255,0)} }
 
-/* ---------- Donate Buttons ---------- */
-.donate-btn-main {
-  background:#4c3f91;
-  color:#fff;
-  border:none;
-  border-radius:10px;
-  padding:14px 22px;
-  cursor:pointer;
-  font-weight:700;
-  font-size:1.1rem;
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  transition:background .25s ease, transform .18s ease;
-}
-.donate-btn-main:hover {
-  background:#6b58c2;
-  transform:translateY(-2px);
-}
-
-/* ---------- Contact Form ---------- */
-.contact-form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
-.contact-form input, .contact-form textarea {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-.contact-form button {
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  padding: 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 700;
-}
-.contact-form button:hover { background:#6b58c2; }
-
+/* small utility */
+.center{ text-align:center; }
+.small-muted{ color:#666; font-size:0.95rem; }
+.menu-link{ color: white; display:block; padding:8px 12px; border-radius:6px; }
+.menu-link:hover{ background: rgba(255,255,255,0.04); }
 </style>
 </head>
 <body>
@@ -237,105 +178,774 @@ main section.active{ display:block; }
   <p>Completion of Supyire Dictionary and Digitized Text Corpus — Africa International University</p>
 </header>
 
-<!-- ---------- Carousel ---------- -->
+<!-- ---------- Carousel (only visible on home) ---------- -->
 <div id="carousel" class="carousel" aria-hidden="false">
   <img src="images/maize.jpeg" alt="Maize field" class="active">
   <img src="images/ground.jpeg" alt="Ground work">
   <img src="images/lighter.jpg" alt="Village light">
   <img src="images/house.jpeg" alt="Traditional house">
   <img src="images/people2.JPG" alt="Community gathering">
+  </div>
+
+<!-- ---------- Navigation ---------- -->
+<nav role="navigation" aria-label="Main menu">
+  <div class="nav-inner">
+    <!-- use anchor links so pages are linkable/bookmarkable -->
+    <div class="dropdown">
+      <a class="dropbtn" href="/home" data-target="home">🏠 Home</a>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropbtn" onclick="toggleDropdown('about-menu', this)">
+        📘 About <span class="arrow">▾</span>
+      </button>
+      <div id="about-menu" class="dropdown-content" role="menu">
+        <a class="menu-link" href="/about" data-target="about" role="menuitem">About the Project</a>
+        <a class="menu-link" href="/history" data-target="history" role="menuitem">History of Research</a>
+        <a class="menu-link" href="/database" data-target="database" role="menuitem">Toolbox Database</a>
+        <a class="menu-link" href="/example-text" data-target="example-text" role="menuitem">Example of a Text</a>
+          <a class="menu-link" href="/news" data-target="news" role="menuitem">News</a>
+        <a class="menu-link" href="/team" data-target="team" role="menuitem">Team</a>
+        <a class="menu-link" href="/budget" data-target="budget" role="menuitem">Budget</a>
+      </div>
+    </div>
+
+   <div class="dropdown">
+  <button class="dropbtn" onclick="toggleDropdown('support-menu', this)">
+    💖 Support <span class="arrow">▾</span>
+  </button>
+
+  <div id="support-menu" class="dropdown-content" role="menu">
+    <a class="menu-link" href="#" data-target="support" role="menuitem" onclick="showDonate('support'); toggleDropdown('support-menu'); return false;">Support Overview</a>
+    
+    <a class="menu-link" href="#" data-target="prayer" role="menuitem" onclick="showDonate('prayer'); toggleDropdown('support-menu'); return false;">Prayer</a>
+    
+    <a class="menu-link" href="#" data-target="donate-hub" role="menuitem" onclick="showDonate('donate-hub'); toggleDropdown('support-menu'); return false;">Donate</a>
+    
+    <a class="menu-link" href="#" data-target="contact" role="menuitem" onclick="showDonate('contact'); toggleDropdown('support-menu'); return false;">Contact</a>
+  </div>
 </div>
-
-<!-- ---------- Main ---------- -->
+</div></nav>
 <main>
+  <!-- HOME -->
+  <section id="home" class="active">
+    <h2 class="center">Welcome to the Supyire Lexicography Project</h2>
+    <p class="center">This project is dedicated to preserving and documenting the Supyire language through lexicography, digital databases, and linguistic research.</p>
+  </section>
 
-<!-- ---------- Team Section ---------- -->
-<section id="team" class="active">
-  <h2 class="center">Our Team</h2>
-  <div class="team-grid">
-    <div class="team-member">
-      <img src="images/team_michael.jpg" alt="Dr. Michael Otieno">
-      <h3>Dr. Michael Otieno</h3>
-      <p>Project Lead & Lexicographer</p>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="center">About the Project</h2>
+    <p>Supyire is a language spoken by 350,000+ people in southeastern Mali. The New Testament was published in 2008, the Old Testament is currently being translated, and people are being taught to read and write, but as yet there are no dictionaries.
+This project aims to publish a Supyire-French and a Supyire-English dictionary, in both print and digital form, for the use of Supyire speakers and for others who want to use it. We also aim to publish a collection of texts in Supyire that will be available to researchers and will also function as a linguistic and cultural archive of the language and culture.
+Through this work, this project will promote both the preservation and development of the Supyire language and culture for the education and benefit of Supyire speakers.</p>
+  </section>
+
+  <section id="history">
+    <h2 class="center">History of Research</h2>
+    <p>In 1980, Robert Carlson began studying Supyire under the auspices of Wycliffe Bible Translators and SIL International. He published a reference grammar in 1994, and has written many articles on the language.
+As part of this research, Supyire words have been collected and entered in a database which now has over 11,000 entries.
+Many texts have also been collected from 1980 to the present. These are currently in a digital database with nearly 400,000 words.
+Since 1990, both the lexical and text collection work has been carried out with the help of Ali Sanogo, of Farakala, Mali.</p>
+  </section>
+
+  <section id="database">
+    <h2 class="center">Toolbox Database</h2>
+    <p>The current lexical database is in a computer program called Toolbox, developed by SIL. This database needs to be regularized, corrected, and enhanced with more and better example sentences.
+After thorough revision, the database must be transferred to another program, FLEx, also developed by SIL. From FLEx, the Supyire-French and Supyire-English dictionaries can be printed, and apps for smartphones can be created. The phone apps will be made available at no or very low cost.</p>
+    <div class="center" style="margin-top:18px;">
+      <strong>Example of a lexical entry</strong><br>
+      <img src="images/entry on kakɔɔn.jpg" alt="Example Text" style="width:60%;max-width:700px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.15);">
     </div>
-    <div class="team-member">
-      <img src="images/team_awa.jpg" alt="Prof. Awa Traoré">
-      <h3>Prof. Awa Traoré</h3>
-      <p>Language Research Specialist</p>
+  </section>
+
+  <section id="example-text">
+    <h2 class="center">Example of a Text</h2>
+    <p>Currently, the text database is in also in Toolbox.
+Selected texts will be formatted, annotated, translated and made available online for research. The annotations will be both linguistic and cultural.
+Our goal is to make available online a collection of texts number at least 500,000 words.</p>
+    <div class="center" style="margin-top:16px;">
+      <strong>Example of a proverb</strong><br>
+      <img src="images/screenshot of a proverb.jpg" alt="Example" style="width:700px;max-width:100%;border-radius:12px;display:block;margin:auto;">
     </div>
-    <div class="team-member">
-      <img src="images/team_fatoumata.jpg" alt="Fatoumata Diarra">
-      <h3>Fatoumata Diarra</h3>
-      <p>Corpus Development</p>
+  </section>
+
+  <section id="documentation">
+    <h2 class="center">Documentation</h2>
+    <p><center>Download project files and research documentation.</center></p>
+    <p class="center"><a href="Project proposal.docx" download style="color:#4c3f91;font-weight:bold;">📄 Download Project</a></p>
+  </section>
+
+  <section id="news">
+    <h2 class="center">News & Updates</h2>
+    <article>
+      <h3>Volunteer or Donation Appeals</h3>
+      <p class="small-muted"><em>October 2025</em></p>
+      <p>The Supyire Lexicography Project invites individuals and organizations to join in supporting the preservation of the Supyire language.
+You can help by:</p>
+      <ul>
+        <li>🙏 Praying regularly for the success of the project and its team members.</li>
+        <li>💰 Donating to assist with training, research, and technology expenses.</li>
+      </ul>
+      <p>Every contribution — big or small — helps us move closer to publishing a complete and accessible Supyire dictionary and digital text archive.<br>
+      <strong>To get involved, visit the Support page or contact us at:</strong> <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
+    </article>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" style="background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); max-width:1100px; margin: 0 auto;">
+    <h2 class="center" style="color: #4c3f91; margin-bottom:10px;">Our Team</h2>
+    <p style="max-width: 800px; margin: 0 auto 20px; color: #333; font-size: 1.02em; line-height: 1.6; text-align:center;">
+      We have assembled a small team to work on this project. <strong>Prof. Robert Carlson</strong> and <strong>Ali Sanogo</strong> will continue their long-term research, joined by two younger men currently in training to ensure the future of Supyire language preservation.
+    </p>
+
+    <div class="team-grid" style="display:flex;justify-content:center;flex-wrap:wrap;gap:24px;">
+      <div class="team-member" style="background:#f9f8ff;width:300px;padding:20px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+        <img src="images/robert-c.jpg" alt="Prof. Robert Carlson" style="width:100%;height:250px;object-fit:cover;border-radius:10px;">
+        <h3 style="color:#4c3f91;margin:12px 0 6px 0;">Prof. Robert Carlson</h3>
+        <p style="color:#555;font-size:0.95em;"> <strong>Project Leader</strong><br><br>Ali Sanogo and Robert Carlson have collaborated on dictionary and text databases for over 30 years. Robert also serves as a faculty member in the Languages, Linguistics, and Translation Department at <strong>Africa International University (AIU)</strong>.</p>
+      </div>
+
+      <div class="team-member" style="background:#f9f8ff;width:300px;padding:20px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+        <img src="images/robert-s.JPG" alt="Robert Sanogo" style="width:100%;height:250px;object-fit:cover;border-radius:10px;">
+        <h3 style="color:#4c3f91;margin:12px 0 6px 0;">Robert Sanogo</h3>
+        <p style="color:#555;font-size:0.95em;"> <strong>Supyire Specialist</strong><br><br>A native Supyire speaker, Robert specializes in lexicography and text analysis. He is pursuing graduate studies in Linguistics at AIU, with full commitment to this project through its completion in <strong>2032</strong>.</p>
+      </div>
+
+      <div class="team-member" style="background:#f9f8ff;width:300px;padding:20px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+        <img src="images/mike.jpg" alt="Michael Otieno" style="width:100%;height:250px;object-fit:cover;border-radius:10px;">
+        <h3 style="color:#4c3f91;margin:12px 0 6px 0;">Michael Otieno</h3>
+        <p style="color:#555;font-size:0.95em;"> <strong>IT Specialist</strong><br><br>Michael manages data entry and database systems for the project. He is currently pursuing Computer Science at <strong>Africa Nazarene University</strong> and plans further training in linguistics and language documentation at <strong>Dallas International University</strong>.</p>
+      </div>
     </div>
-    <div class="team-member">
-      <img src="images/team_amadou.jpg" alt="Amadou Coulibaly">
-      <h3>Amadou Coulibaly</h3>
-      <p>Software & Digital Tools</p>
+  </section>
+
+  <!-- BUDGET -->
+  <section id="budget">
+    <h2 class="center">Budget summary</h2>
+    <p class="center">The project budget covers training, equipment, personnel, and travel costs distributed over six years. The tables below summarize all expenditures and totals.</p>
+
+    <div class="table-container">
+      <table class="budget-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Year 1</th>
+            <th>Year 2</th>
+            <th>Year 3</th>
+            <th>Year 4</th>
+            <th>Year 5</th>
+            <th>Year 6</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="category-training">
+            <td>Training</td><td>10,581</td><td>3,547</td><td>3,293</td><td>2,994</td><td>13,712</td><td>13,752</td>
+            <td class="count" data-value="47878">0</td>
+          </tr>
+          <tr class="category-equipment">
+            <td>Equipment</td><td>1,440</td><td>0</td><td>960</td><td>480</td><td>960</td><td>0</td>
+            <td class="count" data-value="3840">0</td>
+          </tr>
+          <tr class="category-personnel">
+            <td>Salary & Expenses</td><td>15,066</td><td>13,866</td><td>16,095</td><td>15,390</td><td>17,871</td><td>16,882</td>
+            <td class="count" data-value="95169">0</td>
+          </tr>
+          <tr>
+            <td>Travel</td><td>2,496</td><td>1,200</td><td>2,760</td><td>1,400</td><td>2,860</td><td>1,500</td>
+            <td class="count" data-value="12216">0</td>
+          </tr>
+          <tr class="category-total">
+            <td><strong>Total Expenses</strong></td><td colspan="6"></td>
+            <td class="count" data-value="159103"><strong>0</strong></td>
+          </tr>
+          <tr>
+            <td>Admin (10%)</td><td colspan="6"></td><td class="count" data-value="15910">0</td>
+          </tr>
+          <tr class="grand-total">
+            <td><strong>Grand Total</strong></td><td colspan="6"></td>
+            <td class="count" data-value="175013"><strong>0</strong></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </section>
+
+<!-- ===================== SUPPORT ===================== -->
+<section id="support">
+  <h2 class="center">Support the Project</h2>
+  <p class="center">You can support the project through prayer or donations.</p>
+
+  <!-- Step 1: Choose Pray or Donate -->
+  <div class="center" style="margin-top:20px; display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+    <button class="donate-btn-main" onclick="showSection('prayer')">🙏 Prayer</button>
+    <button class="donate-btn-main" onclick="showSection('donate-hub')">💰 Donate</button>
   </div>
 </section>
 
-<!-- ---------- Budget Section ---------- -->
-<section id="budget">
-  <h2 class="center">Project Budget</h2>
-  <div class="table-container">
-    <table class="budget-table">
-      <thead>
-        <tr>
-          <th>Category</th>
-          <th>Item</th>
-          <th>Cost</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="category-training"><td>Training</td><td>Workshop & Seminars</td><td>$5,000</td></tr>
-        <tr class="category-equipment"><td>Equipment</td><td>Computers & Software</td><td>$12,000</td></tr>
-        <tr class="category-personnel"><td>Personnel</td><td>Researchers & Assistants</td><td>$18,000</td></tr>
-        <tr class="category-total"><td colspan="2">Total</td><td>$35,000</td></tr>
-      </tbody>
-    </table>
+<section id="prayer">
+  <h2 class="center">Prayer Request</h2>
+  <ul style="font-size: 1.1em; line-height: 1.9; color: #333; margin-top: 15px;">
+    <li><strong>Unity and Collaboration</strong> – for harmony, mutual respect, and effective teamwork among all who are involved in the project.</li>
+    <li><strong>Provision of Resources</strong> – for financial, technical, and human resources needed to complete the work successfully.</li>
+  </ul>
+  <div class="center" style="margin-top:20px;">
+    <button class="donate-btn-main" onclick="showSection('support')">⬅ Back</button>
   </div>
 </section>
 
-<!-- ---------- Contact Section ---------- -->
+<!-- ===================== DONATION HUB ===================== -->
+<section id="donate-hub" class="donate-page">
+  <section id="donate-hub" class="donate-page active" style="text-align:center;">
+<h2> <strong>ways to donate to Supyire Lexicography Project</strong></h2>
+  <p>There are two charities in the US which receive and transmit funds for the project to AIU in Kenya. These charities provide tax deductible receipts for donations.</p>
+<p>The prefered method is through the charity International Generosity, which is affiliated with Trust Bridge Global. A second method, if you prefer to use PayPal, is through the charity Christian Leaders for Africa, which is affiliated with AIU.</p>
+<p><strong style="color:blue;">NOTE :</strong>Donors who are not in the USA can  got to <a href="https://internationalgenerosity.com" target="_blank"><strong>internationalgenerosity.com</strong></a>, select Africa International University, fill in Linguistic Project and follow the rest of the instructions. Each country has different charity donation laws.</p>
+
+  <!-- Step 2: Ask US or Other Country -->
+  <p class="center" style="margin-top:12px;">Are you donating from the US or another country?</p>
+  <div class="center" style="margin-top:16px; display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+    <button class="donate-btn-main" onclick="showSection('donate-us')">🇺🇸 US</button>
+    <button class="donate-btn-main" onclick="showSection('donate-other')">🌍 Other Country</button>
+  </div>
+
+  <div class="center" style="margin-top:20px;">
+    <button class="donate-btn-main" onclick="showSection('support')">⬅ Back</button>
+  </div>
+</section>
+
+<!-- ===================== DONATE US ===================== -->
+<section id="donate-us" class="donate-page">
+  <h2 class="center">US Donation Options</h2>
+  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:20px;">
+    <button class="donate-btn-main" onclick="showSection('donation1')">
+      International Generosity
+    </button>
+    <button class="donate-btn-main" onclick="showSection('donation2')">
+      Christian Leaders for Africa (CLA)
+    </button>
+    <button class="donate-btn-main" onclick="showSection('donation3')">
+      Bank Transfer
+    </button>
+  </div>
+  <div class="center" style="margin-top:20px;">
+    <button class="donate-btn-main" onclick="showSection('donate-hub')">⬅ Back</button>
+  </div>
+</section>
+
+<!-- ===================== DONATE OTHER ===================== -->
+<section id="donate-other" class="donate-page">
+  <h2 class="center">Donation Options for Other Countries</h2>
+  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:20px;">
+    <button class="donate-btn-main" onclick="showSection('donation2')">
+      Christian Leaders for Africa (CLA)
+    </button>
+    <button class="donate-btn-main" onclick="showSection('donation3')">
+      Bank Transfer
+    </button>
+  </div>
+  <div class="center" style="margin-top:20px;">
+    <button class="donate-btn-main" onclick="showSection('donate-hub')">⬅ Back</button>
+  </div>
+
+<!-- ===================== DONATION HUB ===================== -->
+
+  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:26px;">
+    <button class="donate-btn-main" type="button" onclick="showDonate('donation1')">
+      <img src="images/trustbridge.webp" alt="International Generosity Logo" class="donate-btn-logo">
+      International Generosity
+    </button>
+
+    <button class="donate-btn-main" type="button" onclick="showDonate('donation2')">
+      <img src="images/CLA logo.png" alt="Christian Leaders for Africa Logo" class="donate-btn-logo">
+      Christian Leaders for Africa
+    </button>
+
+    <button class="donate-btn-main" type="button" onclick="showDonate('donation3')">
+      <img src="images/stanbic.webp" alt="Bank Transfer Logo" class="donate-btn-logo">
+      Bank Transfer
+    </button>
+  </div>
+</section>
+
+<!-- ===================== DONATION 1 ===================== -->
+<section id="donation1" class="donate-page">
+
+  <h2>
+      1. International Generosity (TrustBridge Global)
+  </h2>
+
+  <p>Visit <a href="https://internationalgenerosity.com" target="_blank"><strong>internationalgenerosity.com</strong></a> and click <strong>“Donate Now”</strong>.</p>
+  <img src="images/Picture1.jpg" alt="Step 1" loading="lazy">
+  <p>Under <strong>1. Select a Charity or Fund</strong>, choose <strong>Africa International University (global) (#TGF243189)</strong>.</p>
+  <img src="images/Picture2.jpg" alt="Step 2" loading="lazy">
+  <p>Under <strong>2. Select a contribution type</strong>, choose your payment method.</p>
+  <img src="images/Picture4.jpg" alt="Step 3" loading="lazy">
+  <p>Under <strong>3. Make a contribution</strong>, enter your amount.</p>
+  <img src="images/Picture5.jpg" alt="Step 4" loading="lazy">
+  <p><strong style="color:blue;"> IMPORTANT :</strong>  In <strong>Contribution Purpose</strong>, write <strong style="color:blue;">Linguistic Project</strong>.</p>
+  <img src="images/Picture6.jpg" alt="Step 5" loading="lazy">
+  <p>Under 4. (Giver information), fill in the information requested, then click on <strong>NEXT</strong>.</p>
+  <p>If the summary of information on the next page is correct, click on <strong>CONTINUE TO PAYMENTS</strong>.</p>
+Follow the instructions on the next page. These instructions are different for each contribution type.
+</p>
+  <img src="images/Picture7.jpg" alt="Step 6" loading="lazy">
+  <p>Confirm your information and continue to payment.</p>
+  <img src="images/Picture8.jpg" alt="Step 7" loading="lazy">
+  <img src="images/Picture9.jpg" alt="Final Payment" loading="lazy">
+
+  <button class="donate-btn-main" type="button" onclick="showDonate('donate-hub')">⬅ Back to Options</button>
+</section>
+
+<!-- ===================== DONATION 2 ===================== -->
+<section id="donation2" class="donate-page">
+  <h2>
+    2. Christian Leaders for Africa (CLA)
+  </h2>
+
+  <p>Visit <a href="https://www.clafrica.com" target="_blank"><strong>clafrica.com</strong></a> and click <strong>“Donate to CLA”</strong>.</p>
+  <img src="images/Picture10.jpg" alt="CLA Page" loading="lazy">
+  <p>Enter your amount and select PayPal or card payment.</p>
+  <img src="images/Picture11.jpg" alt="CLA Form" loading="lazy">
+  <p><strong style="color:blue;">IMPORTANT  :</strong>  In <em>“Add special instructions to the seller”</em>, write <strong style="color:blue;">AIU–Linguistic Project</strong>.</p>
+  <p>If you wish to donate through CLA with a physical check, please make the check payable to <strong>Christian Leaders for Africa</strong> and note that it is for <strong style="color:blue;">AIU–Linguistic Project</strong>.</p>
+  <p><strong>Mailing Address:</strong><br>
+  Christian Leaders for Africa<br>
+  PO Box 3302,<br>
+  Carmel, IN 46082</p>
+
+  <button class="donate-btn-main" type="button" onclick="showDonate('donate-hub')">⬅ Back to Options</button>
+</section>
+
+<!-- ===================== DONATION 3 ===================== -->
+<section id="donation3" class="donate-page">
+  <h2>
+    <img src="images/stanbic.webp" alt="Bank Logo" class="donate-logo">
+    3. Bank Transfer to AIU
+  </h2>
+
+  <p><strong>Bank:</strong> Stanbic Bank<br>
+  <strong>Account Name:</strong> Africa International University<br>
+  <strong>Account Number:</strong> 0100000200136<br>
+  <strong>SWIFT Code:</strong> SBICKENX</p>
+
+  <p><em>In the payment purpose box, specify: <span style="color:blue;">Linguistic Project</span></em></p>
+
+  <button class="donate-btn-main" type="button" onclick="showDonate('donate-hub')">⬅ Back to Options</button>
+</section>
+
+<!-- ===================== STYLES ===================== -->
+<style>
+  .donate-btn-main {
+    background:#4c3f91;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    padding:14px 22px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:1.1rem;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:background .25s ease, transform .18s ease;
+  }
+  .donate-btn-main:hover {
+    background:#6b58c2;
+    transform:translateY(-2px);
+  }
+
+  .donate-btn-logo {
+    width:44px;
+    height:44px;
+    object-fit:contain;
+    border-radius:8px;
+    background:#fff;
+    padding:4px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.12);
+  }
+
+  .donate-logo {
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    border-radius:8px;
+    background:#fff;
+    padding:4px;
+    margin-right:10px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.12);
+    vertical-align:middle;
+  }
+
+  .donate-page {
+    display:none;
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .3s ease, transform .3s ease;
+    text-align:justify;
+    padding:36px 22px;
+    font-size:1.15rem;
+    line-height:1.9;
+    color:#222;
+    max-width:850px;
+    margin:0 auto;
+  }
+
+  .donate-page.active {
+    display:block;
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .donate-page img[loading] {
+    width:85%;
+    max-width:650px;
+    margin:20px auto;
+    border-radius:10px;
+    display:block;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  }
+
+  .donate-page h2 {
+    font-size:1.6rem;
+    font-weight:800;
+    color:#4c3f91;
+    text-align:center;
+    margin-bottom:18px;
+  }
+
+  #donate-title {
+    font-size:1.8rem;
+    font-weight:800;
+    color:#4c3f91;
+    margin-bottom:14px;
+    text-align:center;
+  }
+
+  @media (max-width:768px) {
+    .donate-btn-main {
+      font-size:1rem;
+      padding:12px 18px;
+    }
+    .donate-logo {
+      width:60px;
+      height:60px;
+    }
+  }
+</style>
+
+<!-- ===================== SCRIPT ===================== -->
+<script>
+function showDonate(id) {
+  document.querySelectorAll('.donate-page').forEach(sec => {
+    sec.classList.remove('active');
+  });
+  const target = document.getElementById(id);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+</script>
+
+
+
+  <!-- CONTACT -->
 <section id="contact">
-  <h2 class="center">Contact Us</h2>
-  <form class="contact-form">
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
-    <textarea placeholder="Your Message" rows="6" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
+  <h2 class="center" style="color:#4c3f91;">Contact Us</h2>
+  <div class="center" style="margin-bottom:12px;">
+    <p>Email: <a href="mailto:supyire.lexicography@gmail.com">supyire.lexicography@gmail.com</a></p>
+    <p>Phone: <a href="tel:+254714308167">+254 714 308 167</a></p>
+  </div>
+
+  <h3 class="center">Feedback</h3>
+  <div style="display:flex;justify-content:center;">
+    <form id="feedback-form"
+      action="https://formspree.io/f/mblplgre"
+      method="POST"
+      enctype="multipart/form-data"
+      style="width:100%;max-width:500px;padding:20px;background:#f4f4f4;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+
+      <label>Your email:<br>
+        <input type="email" name="email" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin-top:5px;">
+      </label><br><br>
+
+      <label>Your message:<br>
+        <textarea name="message" rows="5" required style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;margin-top:5px;"></textarea>
+      </label><br><br>
+
+      <label>Upload a file (optional):<br>
+        <input type="file" name="upload" style="margin-top:5px;">
+      </label><br><br>
+
+      <button id="send-btn" type="submit" style="background:#4c3f91;color:white;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:16px;font-weight:bold;display:inline-flex;align-items:center;gap:8px;">
+        <span>Send</span>
+        <span id="spinner" style="display:none;width:18px;height:18px;border:3px solid #fff;border-top:3px solid transparent;border-radius:50%;animation:spin 1s linear infinite;"></span>
+      </button>
+
+      <p id="form-message" style="text-align:center;color:green;margin-top:15px;display:none;">
+        ✅ Message sent successfully!
+      </p>
+    </form>
+  </div>
 </section>
+
+<!-- SPINNER ANIMATION STYLE -->
+<style>
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+</style>
+
+<!-- FORM RESET + SPINNER SCRIPT -->
+<script>
+const form = document.getElementById('feedback-form');
+const messageBox = document.getElementById('form-message');
+const sendBtn = document.getElementById('send-btn');
+const spinner = document.getElementById('spinner');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault(); // prevent default submit
+  messageBox.style.display = 'none';
+  spinner.style.display = 'inline-block';
+  sendBtn.disabled = true;
+
+  const formData = new FormData(form);
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  });
+
+  spinner.style.display = 'none';
+  sendBtn.disabled = false;
+
+  if (response.ok) {
+    form.reset();
+    messageBox.style.display = 'block';
+    messageBox.style.color = 'green';
+    messageBox.textContent = '✅ Message sent successfully!';
+  } else {
+    messageBox.style.display = 'block';
+    messageBox.style.color = 'red';
+    messageBox.textContent = '❌ Something went wrong. Please try again.';
+  }
+});
+</script>
 
 </main>
 
-<script>
-/* Carousel */
-let carouselImgs = document.querySelectorAll("#carousel img");
-let current = 0;
-setInterval(() => {
-  carouselImgs[current].classList.remove("active");
-  current = (current + 1) % carouselImgs.length;
-  carouselImgs[current].classList.add("active");
-}, 5000);
+<footer style="text-align:center;padding:18px 10px;background:#fff;border-top:1px solid #eee;margin-top:24px;">
+  <p>&copy; 2025 Supyire Lexicography Project | Africa International University</p>
+</footer>
 
-/* Dropdown menu */
-document.querySelectorAll(".dropbtn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    let dropdown = btn.nextElementSibling;
-    dropdown.classList.toggle("show");
-    btn.querySelector(".arrow").classList.toggle("rotate");
-  });
-});
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-    document.querySelectorAll(".dropdown-content").forEach(d => d.classList.remove("show"));
-    document.querySelectorAll(".arrow").forEach(a => a.classList.remove("rotate"));
+<!-- =================== SCRIPTS =================== -->
+<script>
+/*
+  Single-file "multi-page" behavior adjusted for GitHub Pages:
+  - clicking links that point to "/about" or similar will be intercepted and converted to "#about"
+    so browser never requests /about from the server (this avoids GitHub Pages 404 on reload).
+  - navigation state lives in the URL hash (#about) so refreshing works on GitHub Pages.
+  - No textual content was changed.
+*/
+
+function showSection(id, opts = { updateHash: true }) {
+  // hide all sections
+  document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+  // find target
+  const target = document.getElementById(id);
+  if (!target) return;
+  target.classList.add('active');
+
+  // carousel visibility: only on home
+  const carousel = document.getElementById('carousel');
+  if (carousel) carousel.style.display = (id === 'home') ? 'block' : 'none';
+
+  // collapse dropdowns
+  document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
+  document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate'));
+
+  // update hash (so refresh stays on same section and GitHub Pages does not try to fetch /about)
+  if (opts.updateHash) {
+    try {
+      // set hash without adding duplicate history entries
+      if (location.hash !== '#' + id) {
+        location.hash = id;
+      }
+    } catch (e) { /* ignore */ }
   }
-};
+
+  // scroll to top smoothly
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// toggle dropdown (desktop)
+function toggleDropdown(menuId, btn) {
+  const menu = document.getElementById(menuId);
+  const arrow = btn.querySelector('.arrow');
+  if (!menu) return;
+  // close other menus
+  document.querySelectorAll('.dropdown-content').forEach(m => { if (m !== menu) m.classList.remove('show'); });
+  document.querySelectorAll('.arrow').forEach(a => { if (a !== arrow) a.classList.remove('rotate'); });
+  menu.classList.toggle('show');
+  if (arrow) arrow.classList.toggle('rotate');
+}
+
+// donation options toggle (if you add donation-options area later)
+function toggleDonationOptions() {
+  const wrap = document.getElementById('donation-options');
+  if (!wrap) return;
+  wrap.style.display = (wrap.style.display === 'flex' || wrap.classList.contains('show')) ? 'none' : 'flex';
+  wrap.classList.toggle('show');
+}
+
+/* NAV LINK INTERCEPTION:
+   - intercept clicks on internal links (those with data-target or href starting with '/')
+     so we call showSection and avoid page reloads and server requests.
+*/
+document.addEventListener('click', function(e) {
+  const a = e.target.closest('a');
+  if (!a) return;
+
+  // If anchor has data-target attribute, prefer that (your code uses data-target in many places)
+  const targetId = a.getAttribute('data-target');
+  const href = a.getAttribute('href') || '';
+
+  // if link has data-target, treat as internal single-file navigation
+  if (targetId) {
+    e.preventDefault();
+    showSection(targetId, { updateHash: true });
+    return;
+  }
+
+  // If href starts with "/" (like "/about") intercept and convert to hash navigation
+  if (href.startsWith('/')) {
+    e.preventDefault();
+    const id = href.replace(/^\/+/, '') || 'home';
+    // if the id exists as a section, show it via hash navigation
+    if (document.getElementById(id)) {
+      showSection(id, { updateHash: true });
+    } else {
+      // fallback: go to home
+      showSection('home', { updateHash: true });
+    }
+    return;
+  }
+
+  // If it's an in-page hash link (#...), let it proceed normally
+});
+
+// on load: show section based on location.hash (supports direct bookmarks like index.html#about)
+// if no hash, show home
+function initialRoute() {
+  // If the page was loaded from a server path like "/about" (rare on GitHub Pages unless user typed URL),
+  // convert pathname to hash and replaceLocation to root so the browser loads index.html with a hash.
+  // Note: GitHub Pages returns a 404 before this script runs when user directly requests /about,
+  // so to handle direct refreshes you must add a 404.html that redirects to index.html#<path>.
+  const hash = location.hash.replace(/^#/, '');
+  if (hash && document.getElementById(hash)) {
+    showSection(hash, { updateHash: false });
+    return;
+  }
+
+  // If there is no usable hash, try to detect a pathname (useful if you navigated internally and somehow have /about)
+  const p = location.pathname.replace(/^\/+|\/+$/g, '');
+  if (p && document.getElementById(p)) {
+    // ensure we show the section but also set the hash for refresh safety
+    showSection(p, { updateHash: true });
+    return;
+  }
+
+  // default
+  showSection('home', { updateHash: false });
+}
+initialRoute();
+
+// handle hashchange (back/forward)
+window.addEventListener('hashchange', () => {
+  const id = location.hash.replace(/^#/, '') || 'home';
+  if (document.getElementById(id)) showSection(id, { updateHash: false });
+});
+
+// simple carousel (only runs when carousel is visible)
+(function() {
+  const carousel = document.getElementById('carousel');
+  if (!carousel) return;
+  const slides = carousel.querySelectorAll('img');
+  if (!slides || slides.length === 0) return;
+  let idx = 0;
+  const tick = () => {
+    // only rotate if carousel is displayed
+    if (carousel.style.display === 'none') return;
+    slides[idx].classList.remove('active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('active');
+  };
+  setInterval(tick, 4000);
+})();
+
+// budget count-up animation (runs when budget section enters view)
+(function() {
+  const counters = document.querySelectorAll('.count');
+  if (!counters || counters.length === 0) return;
+  let played = false;
+
+  function animate(el, target) {
+    const duration = 1400;
+    const frame = 20;
+    const steps = Math.ceil(duration / frame);
+    let current = 0;
+    const inc = target / steps;
+    const t = setInterval(() => {
+      current += inc;
+      if (current >= target) {
+        el.textContent = target.toLocaleString();
+        clearInterval(t);
+        el.classList.add('glow');
+        return;
+      }
+      el.textContent = Math.floor(current).toLocaleString();
+    }, frame);
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !played) {
+        counters.forEach(c => {
+          const val = Number(c.getAttribute('data-value')) || 0;
+          animate(c, val);
+        });
+        played = true;
+      }
+    });
+  }, { threshold: 0.25 });
+
+  const budget = document.getElementById('budget');
+  if (budget) obs.observe(budget);
+})();
+
+// close dropdowns when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.dropdown')) {
+    document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
+    document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate'));
+  }
+});
+
+// close dropdowns on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.dropdown-content').forEach(m => m.classList.remove('show'));
+    document.querySelectorAll('.arrow').forEach(a => a.classList.remove('rotate'));
+  }
+});
 </script>
 
 </body>
 </html>
+
+
+
+
