@@ -493,10 +493,21 @@ You can help by:</p>
   <h2 class="center"> US Donation Options</h2>
   <p class="center">Select one of the following donation methods:</p>
   <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:20px;">
-    <button class="donate-btn-main" onclick="showSection('donation1')">International Generosity (TrustBridge Global)</button>
-    <button class="donate-btn-main" onclick="showSection('donation2')">Christian Leaders for Africa (CLA)</button>
-    <button class="donate-btn-main" onclick="showSection('donation3')">Bank Transfer to AIU</button>
-  </div>
+  <button class="donate-btn-main" onclick="showSection('donation1')" style="display:flex; align-items:center; gap:10px;">
+    <img src="images/trustbridge.webp" alt="International Generosity Logo" style="height:24px;">
+    International Generosity (TrustBridge Global)
+  </button>
+
+  <button class="donate-btn-main" onclick="showSection('donation2')" style="display:flex; align-items:center; gap:10px;">
+    <img src="images/CLA logo.png" alt="Christian Leaders for Africa Logo" style="height:24px;">
+    Christian Leaders for Africa (CLA)
+  </button>
+
+  <button class="donate-btn-main" onclick="showSection('donation3')" style="display:flex; align-items:center; gap:10px;">
+    <img src="images/stanbic.webp" alt="Bank Logo" style="height:24px;">
+    Bank Transfer 
+  </button>
+</div>>
   <div class="center" style="margin-top:20px;">
     <button class="donate-btn-main" onclick="showSection('donate-hub')">⬅ Back</button>
   </div>
@@ -507,9 +518,16 @@ You can help by:</p>
   <h2 class="center">🌍 Donation Options for Other Countries</h2>
   <p class="center">Select one of the following donation methods:</p>
   <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:20px;">
-    <button class="donate-btn-main" onclick="showSection('donation2')">Christian Leaders for Africa (CLA)</button>
-    <button class="donate-btn-main" onclick="showSection('donation3')">Bank Transfer to AIU</button>
-  </div>
+  <button class="donate-btn-main" onclick="showSection('donation2')" style="display:flex; align-items:center; gap:10px;">
+    <img src="images/CLA logo.png" alt="Christian Leaders for Africa Logo" style="height:24px;">
+    Christian Leaders for Africa (CLA)
+  </button>
+
+  <button class="donate-btn-main" onclick="showSection('donation3')" style="display:flex; align-items:center; gap:10px;">
+    <img src="images/stanbic.webp" alt="Bank Logo" style="height:24px;">
+    Bank Transfer 
+  </button>
+</div>
   <div class="center" style="margin-top:20px;">
     <button class="donate-btn-main" onclick="showSection('donate-hub')">⬅ Back</button>
   </div>
@@ -863,6 +881,7 @@ document.addEventListener('keydown', (e) => {
 
 </body>
 </html>
+
 
 
 
