@@ -450,7 +450,7 @@ You can help by:</p>
     </div>
   </section>
 
-  <!-- ===================== SUPPORT ===================== -->
+<!-- ===================== SUPPORT ===================== -->
 <section id="support">
   <h2 class="center">Support the Project</h2>
   <p class="center">You can support the project through prayer or donations.</p>
@@ -477,95 +477,91 @@ You can help by:</p>
 <section id="donate-hub" class="donate-page active" style="text-align:center;">
   <h2><strong>Ways to Donate to Supyire Lexicography Project</strong></h2>
   <p>There are two charities in the US which receive and transmit funds for the project to AIU in Kenya. These charities provide tax deductible receipts for donations.</p>
-  <p>The prefered method is through the charity International Generosity, which is affiliated with Trust Bridge Global. A second method, if you prefer to use PayPal, is through the charity Christian Leaders for Africa, which is affiliated with AIU.</p>
+  <p>The preferred method is through the charity International Generosity, which is affiliated with TrustBridge Global. A second method, if you prefer to use PayPal, is through the charity Christian Leaders for Africa, which is affiliated with AIU.</p>
   <p class="center" style="margin-top:12px;"><strong>Are you donating from the US or another country?</strong></p>
   <div class="center" style="margin-top:16px; display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
-    <button class="donate-btn-main" onclick="showSection('donate-us')"> The US</button>
-    <button class="donate-btn-main" onclick="showSection('donate-other')">🌍 Other Country</button>
+    <button class="donate-btn-main" onclick="showSection('donate-us-options')">🇺🇸 The US</button>
+    <button class="donate-btn-main" onclick="showSection('donate-other-options')">🌍 Other Country</button>
   </div>
-
   <div class="center" style="margin-top:20px;">
     <button class="donate-btn-main" onclick="showSection('support')">⬅ Back</button>
   </div>
 </section>
 
-<!-- ===================== DONATE US ===================== -->
-<section id="donate-us" class="donate-page">
+<!-- ===================== DONATE US OPTIONS ===================== -->
+<section id="donate-us-options" class="donate-page">
   <h2 class="center">🇺🇸 US Donation Options</h2>
-
-  <!-- International Generosity -->
-  <h3>1. International Generosity (TrustBridge Global)</h3>
- <p>Visit <a href="https://internationalgenerosity.com" target="_blank"><strong>internationalgenerosity.com</strong></a> and click <strong>“Donate Now”</strong>.</p>
-  <img src="images/Picture1.jpg" alt="Step 1" loading="lazy">
-  <p>Under <strong>1. Select a Charity or Fund</strong>, choose <strong>Africa International University (global) (#TGF243189)</strong>.</p>
-  <img src="images/Picture2.jpg" alt="Step 2" loading="lazy">
-  <p>Under <strong>2. Select a contribution type</strong>, choose your payment method.</p>
-  <img src="images/Picture4.jpg" alt="Step 3" loading="lazy">
-  <p>Under <strong>3. Make a contribution</strong>, enter your amount.</p>
-  <img src="images/Picture5.jpg" alt="Step 4" loading="lazy">
-  <p><strong style="color:blue;"> IMPORTANT :</strong>  In <strong>Contribution Purpose</strong>, write <strong style="color:blue;">Linguistic Project</strong>.</p>
-  <img src="images/Picture6.jpg" alt="Step 5" loading="lazy">
-  <p>Under 4. (Giver information), fill in the information requested, then click on <strong>NEXT</strong>.</p>
-  <p>If the summary of information on the next page is correct, click on <strong>CONTINUE TO PAYMENTS</strong>.</p>
-Follow the instructions on the next page. These instructions are different for each contribution type.
-</p>
-  <img src="images/Picture7.jpg" alt="Step 6" loading="lazy">
-  <p>Confirm your information and continue to payment.</p>
-  <img src="images/Picture8.jpg" alt="Step 7" loading="lazy">
-  <img src="images/Picture9.jpg" alt="Final Payment" loading="lazy">
-
-  <button class="donate-btn-main" type="button" onclick="showDonate('donate-hub')">⬅ Back to Options</button>
-  <!-- Christian Leaders for Africa -->
-  <h3>2. Christian Leaders for Africa (CLA)</h3>
-   <p>Visit <a href="https://www.clafrica.com" target="_blank"><strong>clafrica.com</strong></a> and click <strong>“Donate to CLA”</strong>.</p>
-  <img src="images/Picture10.jpg" alt="CLA Page" loading="lazy">
-  <p>Enter your amount and select PayPal or card payment.</p>
-  <img src="images/Picture11.jpg" alt="CLA Form" loading="lazy">
-  <p><strong style="color:blue;">IMPORTANT  :</strong>  In <em>“Add special instructions to the seller”</em>, write <strong style="color:blue;">AIU–Linguistic Project</strong>.</p>
-  <p>If you wish to donate through CLA with a physical check, please make the check payable to <strong>Christian Leaders for Africa</strong> and note that it is for <strong style="color:blue;">AIU–Linguistic Project</strong>.</p>
-  <p><strong>Mailing Address:</strong><br>
-  Christian Leaders for Africa<br>
-  PO Box 3302,<br>
-  Carmel, IN 46082</p>
-
-  <button class="donate-btn-main" type="button" onclick="showDonate('donate-hub')">⬅ Back to Options</button>
-
-  <!-- Bank Transfer -->
-  <h3>3. Bank Transfer to AIU</h3>
-  <img src="images/stanbic.webp" alt="Bank Logo" class="donate-logo">
-  <p><strong>Bank:</strong> Stanbic Bank<br>
-  <strong>Account Name:</strong> Africa International University<br>
-  <strong>Account Number:</strong> 0100000200136<br>
-  <strong>SWIFT Code:</strong> SBICKENX</p>
-  <p><em>In the payment purpose box, specify: <span style="color:blue;">Linguistic Project</span></em></p>
-
+  <p class="center">Select one of the following donation methods:</p>
+  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:20px;">
+    <button class="donate-btn-main" onclick="showSection('donation1')">International Generosity (TrustBridge Global)</button>
+    <button class="donate-btn-main" onclick="showSection('donation2')">Christian Leaders for Africa (CLA)</button>
+    <button class="donate-btn-main" onclick="showSection('donation3')">Bank Transfer to AIU</button>
+  </div>
   <div class="center" style="margin-top:20px;">
     <button class="donate-btn-main" onclick="showSection('donate-hub')">⬅ Back</button>
   </div>
 </section>
 
-<!-- ===================== DONATE OTHER ===================== -->
-<section id="donate-other" class="donate-page">
+<!-- ===================== DONATE OTHER OPTIONS ===================== -->
+<section id="donate-other-options" class="donate-page">
   <h2 class="center">🌍 Donation Options for Other Countries</h2>
+  <p class="center">Select one of the following donation methods:</p>
+  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:20px;">
+    <button class="donate-btn-main" onclick="showSection('donation2')">Christian Leaders for Africa (CLA)</button>
+    <button class="donate-btn-main" onclick="showSection('donation3')">Bank Transfer to AIU</button>
+  </div>
+  <div class="center" style="margin-top:20px;">
+    <button class="donate-btn-main" onclick="showSection('donate-hub')">⬅ Back</button>
+  </div>
+</section>
 
-  <!-- Christian Leaders for Africa -->
-  <h3>1. Christian Leaders for Africa (CLA)</h3>
+<!-- ===================== DONATION 1 ===================== -->
+<section id="donation1" class="donate-page">
+  <h2>1. International Generosity (TrustBridge Global)</h2>
+  <p>Visit <a href="https://internationalgenerosity.com" target="_blank"><strong>internationalgenerosity.com</strong></a> and click <strong>“Donate Now”</strong>.</p>
+  <img src="images/Picture1.jpg" alt="Step 1">
+  <p>Under <strong>1. Select a Charity or Fund</strong>, choose <strong>Africa International University (global) (#TGF243189)</strong>.</p>
+  <img src="images/Picture2.jpg" alt="Step 2">
+  <p>Under <strong>2. Select a contribution type</strong>, choose your payment method.</p>
+  <img src="images/Picture4.jpg" alt="Step 3">
+  <p>Under <strong>3. Make a contribution</strong>, enter your amount.</p>
+  <img src="images/Picture5.jpg" alt="Step 4">
+  <p><strong style="color:blue;">IMPORTANT:</strong> In <strong>Contribution Purpose</strong>, write <strong style="color:blue;">Linguistic Project</strong>.</p>
+  <img src="images/Picture6.jpg" alt="Step 5">
+  <p>Under (Giver information), fill in the details and click <strong>NEXT</strong>. Confirm on the next page, then click <strong>CONTINUE TO PAYMENTS</strong>.</p>
+  <img src="images/Picture7.jpg" alt="Step 6">
+  <img src="images/Picture8.jpg" alt="Step 7">
+  <img src="images/Picture9.jpg" alt="Final Payment">
+  <div class="center" style="margin-top:20px;">
+    <button class="donate-btn-main" onclick="showSection('donate-us-options')">⬅ Back</button>
+  </div>
+</section>
+
+<!-- ===================== DONATION 2 ===================== -->
+<section id="donation2" class="donate-page">
+  <h2>2. Christian Leaders for Africa (CLA)</h2>
   <p>Visit <a href="https://www.clafrica.com" target="_blank"><strong>clafrica.com</strong></a> and click <strong>“Donate to CLA”</strong>.</p>
   <img src="images/Picture10.jpg" alt="CLA Page">
+  <p>Enter your amount and select PayPal or card payment.</p>
+  <img src="images/Picture11.jpg" alt="CLA Form">
   <p><strong style="color:blue;">IMPORTANT:</strong> In “Add special instructions to the seller”, write <strong style="color:blue;">AIU–Linguistic Project</strong>.</p>
   <p>If donating by check, make it payable to <strong>Christian Leaders for Africa</strong> and note <strong style="color:blue;">AIU–Linguistic Project</strong>.</p>
+  <p><strong>Mailing Address:</strong><br>Christian Leaders for Africa<br>PO Box 3302,<br>Carmel, IN 46082</p>
+  <div class="center" style="margin-top:20px;">
+    <button class="donate-btn-main" onclick="showSection('donate-us-options')">⬅ Back</button>
+  </div>
+</section>
 
-  <!-- Bank Transfer -->
-  <h3>2. Bank Transfer to AIU</h3>
-  <img src="images/stanbic.webp" alt="Bank Logo" class="donate-logo">
+<!-- ===================== DONATION 3 ===================== -->
+<section id="donation3" class="donate-page">
+  <h2><img src="images/stanbic.webp" alt="Bank Logo" class="donate-logo">3. Bank Transfer to AIU</h2>
   <p><strong>Bank:</strong> Stanbic Bank<br>
   <strong>Account Name:</strong> Africa International University<br>
   <strong>Account Number:</strong> 0100000200136<br>
   <strong>SWIFT Code:</strong> SBICKENX</p>
   <p><em>In the payment purpose box, specify: <span style="color:blue;">Linguistic Project</span></em></p>
-
   <div class="center" style="margin-top:20px;">
-    <button class="donate-btn-main" onclick="showSection('donate-hub')">⬅ Back</button>
+    <button class="donate-btn-main" onclick="showSection('donate-us-options')">⬅ Back</button>
   </div>
 </section>
 
@@ -867,5 +863,6 @@ document.addEventListener('keydown', (e) => {
 
 </body>
 </html>
+
 
 
